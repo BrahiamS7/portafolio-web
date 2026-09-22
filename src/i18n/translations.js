@@ -124,7 +124,6 @@ export const translations = {
         { label: "github", value: "github.com/BrahiamS7", href: "https://github.com/BrahiamS7" },
       ],
       cvLabel: "Descargar CV",
-      cvSoon: "disponible pronto",
     },
     footer: {
       rights: "Todos los derechos reservados.",
@@ -257,7 +256,6 @@ export const translations = {
         { label: "github", value: "github.com/BrahiamS7", href: "https://github.com/BrahiamS7" },
       ],
       cvLabel: "Download CV",
-      cvSoon: "available soon",
     },
     footer: {
       rights: "All rights reserved.",

@@ -25,9 +25,9 @@ export default function Contact() {
         ))}
       </dl>
 
-      <button className="btn btn--ghost btn--cv" disabled>
-        {contact.cvLabel} <span className="cv-note">({contact.cvSoon})</span>
-      </button>
+      <a className="btn btn--ghost btn--cv" href="/Brahiam_Soto_CV.docx" download>
+        {contact.cvLabel}
+      </a>
     </section>
   );
 }

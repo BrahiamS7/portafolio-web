@@ -155,13 +155,6 @@
 
 .btn--cv {
   margin-top: 36px;
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.cv-note {
-  color: var(--ink-faint);
-  font-size: 0.78rem;
 }
 
 /* ---------- hero ---------- */
