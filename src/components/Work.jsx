@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../i18n/LanguageContext";
+
+// Tamaño de celular con el que se renderiza el iframe; se escala para caber en la tarjeta (aspect-ratio 3/4 en CSS).
+const PREVIEW_W = 420;
+const PREVIEW_H = 560;
 
 function DeploymentCard({ project, t }) {
   const [loaded, setLoaded] = useState(false);
+  const viewport = useRef(null);
+
+  useEffect(() => {
+    const el = viewport.current;
+    const ro = new ResizeObserver(([e]) => el.style.setProperty("--scale", e.contentRect.width / PREVIEW_W));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   return (
     <article className="deploy-card">
@@ -10,7 +22,7 @@ function DeploymentCard({ project, t }) {
         <div className="deploy-card__bar">
           <span className="deploy-card__url">{project.domain}</span>
         </div>
-        <div className="deploy-card__viewport">
+        <div className="deploy-card__viewport" ref={viewport}>
           {project.preview === false ? (
             <p className="deploy-card__nopreview">{t.work.previewUnavailable}</p>
           ) : (
@@ -22,6 +34,8 @@ function DeploymentCard({ project, t }) {
                 loading="lazy"
                 onLoad={() => setLoaded(true)}
                 tabIndex={-1}
+                scrolling="no"
+                style={{ width: PREVIEW_W, height: PREVIEW_H }}
               />
             </>
           )}
