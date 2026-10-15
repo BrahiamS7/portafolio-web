@@ -71,40 +71,14 @@ function DeploymentCard({ project, t }) {
   );
 }
 
-function MoreRow({ project, t }) {
-  return (
-    <li className="more-row">
-      <div className="more-row__text">
-        <h4>{project.name}</h4>
-        <p>{project.description}</p>
-      </div>
-      <div className="more-row__links">
-        {project.demoUrl && (
-          <a href={project.demoUrl} target="_blank" rel="noreferrer">
-            demo
-          </a>
-        )}
-        <a href={project.repoUrl} target="_blank" rel="noreferrer">
-          {t.work.repo}
-        </a>
-      </div>
-    </li>
-  );
-}
-
 export default function Work() {
   const { t } = useLanguage();
   const { work } = t;
 
   return (
     <section id="work" className="section">
-      <div className="section__head">
-        <h2>{work.title}</h2>
-        <span className="section__route">{work.route}</span>
-      </div>
-
       <div className="work__deploys-head">
-        <h3>{work.deploysTitle}</h3>
+        <h2>{work.deploysTitle}</h2>
         <p>{work.deploysSubtitle}</p>
       </div>
       <div className="deploy-grid">
@@ -112,13 +86,6 @@ export default function Work() {
           <DeploymentCard project={p} t={t} key={p.key} />
         ))}
       </div>
-
-      <h3 className="work__more-title">{work.moreTitle}</h3>
-      <ul className="more-list">
-        {work.more.map((p) => (
-          <MoreRow project={p} t={t} key={p.name} />
-        ))}
-      </ul>
     </section>
   );
 }
