@@ -313,7 +313,7 @@
 
 .deploy-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 24px;
   margin-bottom: 72px;
 }
@@ -347,6 +347,10 @@
   font-family: var(--mono);
   font-size: 0.74rem;
   color: var(--ink-faint);
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .deploy-card__viewport {
@@ -396,11 +400,18 @@
 }
 
 .deploy-card__meta-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10px;
   margin-bottom: 10px;
+}
+
+.deploy-card__nopreview {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
 }
 
 .deploy-card__meta-head h3 {
@@ -574,10 +585,6 @@
     grid-template-columns: 1fr;
     gap: 40px;
     padding-top: 48px;
-  }
-
-  .deploy-grid {
-    grid-template-columns: 1fr;
   }
 }
 

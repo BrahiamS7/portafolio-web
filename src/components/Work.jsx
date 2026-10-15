@@ -11,14 +11,20 @@ function DeploymentCard({ project, t }) {
           <span className="deploy-card__url">{project.domain}</span>
         </div>
         <div className="deploy-card__viewport">
-          {!loaded && <div className="deploy-card__skeleton" aria-hidden="true" />}
-          <iframe
-            src={project.url}
-            title={project.name}
-            loading="lazy"
-            onLoad={() => setLoaded(true)}
-            tabIndex={-1}
-          />
+          {project.preview === false ? (
+            <p className="deploy-card__nopreview">{t.work.previewUnavailable}</p>
+          ) : (
+            <>
+              {!loaded && <div className="deploy-card__skeleton" aria-hidden="true" />}
+              <iframe
+                src={project.url}
+                title={project.name}
+                loading="lazy"
+                onLoad={() => setLoaded(true)}
+                tabIndex={-1}
+              />
+            </>
+          )}
           <a
             className="deploy-card__overlay"
             href={project.url}
@@ -40,9 +46,11 @@ function DeploymentCard({ project, t }) {
           <a href={project.url} target="_blank" rel="noreferrer" className="btn btn--primary btn--sm">
             {t.work.openLive}
           </a>
-          <a href={project.repoUrl} target="_blank" rel="noreferrer" className="btn btn--ghost btn--sm">
-            {t.work.repo}
-          </a>
+          {project.repoUrl && (
+            <a href={project.repoUrl} target="_blank" rel="noreferrer" className="btn btn--ghost btn--sm">
+              {t.work.repo}
+            </a>
+          )}
         </div>
       </div>
     </article>
